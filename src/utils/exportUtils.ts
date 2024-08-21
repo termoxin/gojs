@@ -5,7 +5,7 @@ const BACKGROUND_COLOR = "white";
 const LEGEND_PADDING = 20;
 const LEGEND_BORDER_COLOR = "black";
 const LEGEND_TITLE = "Legend:";
-const LEGEND_TITLE_FONT = "bold 30px sans-serif"; 
+const LEGEND_TITLE_FONT = "bold 20px sans-serif"; 
 const LEGEND_TITLE_COLOR = "black";
 
 export const exportWithLegend = async (diagram: go.Diagram | null, legendItems: any[]) => {
@@ -88,7 +88,7 @@ function createDiagramImage(diagram: go.Diagram): Promise<HTMLImageElement> {
 
 function createCombinedCanvas(diagramImage: HTMLImageElement, legendImage: HTMLImageElement): HTMLCanvasElement | null {
   const legendWithPaddingWidth = legendImage.width + 2 * LEGEND_PADDING;
-  const legendWithPaddingHeight = legendImage.height + 2 * LEGEND_PADDING + 30; // extra space for the "Legend" title
+  const legendWithPaddingHeight = legendImage.height + 2 * LEGEND_PADDING + 30; 
 
   const combinedCanvas = document.createElement('canvas');
   combinedCanvas.width = diagramImage.width + legendWithPaddingWidth + 50;
