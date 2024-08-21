@@ -8,14 +8,13 @@ const LEGEND_TEXT_OFFSET_Y = 50;
 const COMBINED_CANVAS_SPACING = 50;
 const COMBINED_CANVAS_MARGIN = 20;
 const IMAGE_FORMAT = 'image/png';
-const DOWNLOAD_FILE_NAME = 'nodes_with_legend.png';
 
 export const exportWithLegend = (diagram: go.Diagram | null, legendContainer: HTMLDivElement | null) => {
     if (!diagram || !legendContainer) return;
 
     const diagramImage = createDiagramImage(diagram);
 
-    if(!diagramImage) return;
+    if (!diagramImage) return;
 
     diagramImage.onload = () => {
         const legendCanvas = createLegendCanvas(legendContainer);
@@ -87,7 +86,19 @@ function createCombinedCanvas(diagramImage: HTMLImageElement, legendCanvas: HTML
 function downloadImage(canvas: HTMLCanvasElement): void {
     const combinedImage = canvas.toDataURL(IMAGE_FORMAT);
     const link = document.createElement('a');
-    link.download = DOWNLOAD_FILE_NAME;
+    link.download = getTimestampedFileName();
     link.href = combinedImage;
     link.click();
+}
+
+function getTimestampedFileName(): string {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+
+    return `nodes_with_legend_${year}_${month}_${day}_${hours}:${minutes}:${seconds}.png`;
 }
