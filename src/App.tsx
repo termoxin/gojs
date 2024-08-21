@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 import Diagram from './components/Diagram/Diagram';
-import Legend from './components/Legend/Legend';
 import { exportWithLegend } from './utils/exportUtils';
 import styled from 'styled-components';
 
