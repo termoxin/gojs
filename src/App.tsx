@@ -57,23 +57,27 @@ const App: React.FC = () => {
   const [legendItems, setLegendItems] = useState<any[]>([]);
   const [key, setKey] = useState<number>(0); 
   const diagramRef = useRef<go.Diagram | null>(null);
-  const legendRef = useRef<HTMLDivElement | null>(null);
 
   const regenerateDiagram = () => {
     setKey(prevKey => prevKey + 1); 
   };
 
+  const handleExport = () => {
+    if (diagramRef.current) {
+        exportWithLegend(diagramRef.current, legendItems);
+    }
+  };
+
   return (
     <Container>
       <ContentWrapper>
-        <Legend legendItems={legendItems} legendRef={legendRef} />
         <Diagram
           key={key} // Pass key to force re-render
           setLegendItems={setLegendItems}
           diagramRef={diagramRef}
         />
       </ContentWrapper>
-      <ExportButton onClick={() => exportWithLegend(diagramRef.current, legendRef.current)}>
+      <ExportButton onClick={handleExport}>
         Export with Legend
       </ExportButton>
       <RegenerateButton onClick={regenerateDiagram}>

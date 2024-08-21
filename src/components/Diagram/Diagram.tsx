@@ -24,7 +24,7 @@ const Diagram: React.FC<DiagramProps> = ({ setLegendItems, diagramRef }) => {
       const $ = go.GraphObject.make;
       const diagram = $(go.Diagram, diagramDivRef.current, {
         initialContentAlignment: go.Spot.Center,
-        "undoManager.isEnabled": true
+        "undoManager.isEnabled": true,
       });
 
       diagram.nodeTemplateMap.add("Rectangle",
