@@ -1,6 +1,6 @@
 # GoJS React Application
 
-![Test image](/specs.jpg)
+![Test image](public/specs.jpg)
 
 This project is a React application integrated with GoJS for interactive diagrams. It allows you to visualize and export diagrams along with a legend.
 
